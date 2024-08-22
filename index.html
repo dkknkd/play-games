@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - Tic-Tac-Toe, Rock-Paper-Scissors, Shoot Bubble, and Memory Match</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>AMAR!</h1>
+    <div id="game-selection">
+        <!-- Game Selection Buttons -->
+        <button onclick="startGame('tic-tac-toe')" class="game-button" aria-label="Play Tic-Tac-Toe">
+            <img src="images/tic-tac-toe.png" alt="Tic-Tac-Toe">
+            Play Tic-Tac-Toe
+        </button>
+        <button onclick="startGame('rock-paper-scissors')" class="game-button" aria-label="Play Rock-Paper-Scissors">
+            <img src="images/rock-paper-scissors.png" alt="Rock-Paper-Scissors">
+            Play Rock-Paper-Scissors
+        </button>
+        <button onclick="startGame('shoot-bubble')" class="game-button" aria-label="Play Shoot Bubble">
+            <img src="images/shoot-bubble.png" alt="Shoot Bubble">
+            Play Shoot Bubble
+        </button>
+        <button onclick="startGame('memory-match')" class="game-button" aria-label="Play Memory Match">
+            <img src="images/memory-match.png" alt="Memory Match">
+            Play Memory Match
+        </button>
+        <button onclick="startGame('snake')" class="game-button" aria-label="Play Snake">
+            <img src="images/snake.png" alt="Snake">
+            Play Snake
+        </button>
+        <button onclick="startGame('memory-squares')" class="game-button" aria-label="Play Memory Squares">
+            <img src="images/memory-squares.png" alt="Memory Squares">
+            Play Memory Squares
+        </button>
+    </div>
+
+    <div id="tic-tac-toe" class="game" aria-label="Tic-Tac-Toe Game">
+        <h2>Tic-Tac-Toe</h2>
+        <div id="play-mode-selection-ttt">
+            <label for="play-mode-ttt">Choose Play Mode: </label>
+            <select id="play-mode-ttt" onchange="changePlayModeTicTacToe()">
+                <option value="friend">Play with a Friend</option>
+                <option value="ai">Play with AI</option>
+            </select>
+        </div>
+        <div id="difficulty-selection-ttt" style="display: none;">
+            <label for="difficulty-ttt">Choose AI Difficulty: </label>
+            <select id="difficulty-ttt" onchange="changeDifficultyTicTacToe()">
+                <option value="easy">Easy</option>
+                <option value="normal">Normal</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div id="scoreboard-ttt">
+            <span>Player X: <span id="score-x">0</span></span> |
+            <span>Player O: <span id="score-o">0</span></span>
+        </div>
+        <div id="tic-tac-toe-board"></div>
+        <button onclick="resetGame('tic-tac-toe')">Reset Game</button>
+        <button onclick="togglePause('tic-tac-toe')">Pause/Resume</button>
+        <button onclick="goBack()">Back to Game Selection</button>
+    </div>
+
+    <div id="rock-paper-scissors" class="game" aria-label="Rock-Paper-Scissors Game">
+        <h2>Rock-Paper-Scissors</h2>
+        <div id="play-mode-selection-rps">
+            <label for="play-mode-rps">Choose Play Mode: </label>
+            <select id="play-mode-rps" onchange="changePlayModeRPS()">
+                <option value="friend">Play with a Friend</option>
+                <option value="ai">Play with AI</option>
+            </select>
+        </div>
+        <div id="difficulty-selection-rps" style="display: none;">
+            <label for="difficulty-rps">Choose AI Difficulty: </label>
+            <select id="difficulty-rps" onchange="changeDifficultyRPS()">
+                <option value="easy">Easy</option>
+                <option value="normal">Normal</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div id="scoreboard-rps">
+            <span>Player: <span id="score-player">0</span></span> |
+            <span>AI: <span id="score-ai">0</span></span>
+        </div>
+        <div id="rps-controls">
+            <button onclick="playerChoice('rock')" class="rps-button rock">
+                <img src="images/rock.png" alt="Rock">
+            </button>
+            <button onclick="playerChoice('paper')" class="rps-button paper">
+                <img src="images/paper.png" alt="Paper">
+            </button>
+            <button onclick="playerChoice('scissors')" class="rps-button scissors">
+                <img src="images/scissors.png" alt="Scissors">
+            </button>
+        </div>
+        <div id="rps-result"></div>
+        <button onclick="resetGame('rock-paper-scissors')">Play Again</button>
+        <button onclick="togglePause('rock-paper-scissors')">Pause/Resume</button>
+        <button onclick="goBack()">Back to Game Selection</button>
+    </div>
+
+    <div id="shoot-bubble" class="game" aria-label="Shoot Bubble Game">
+        <h2>Shoot Bubble</h2>
+        <div id="play-mode-selection-bubble">
+            <label for="play-mode-bubble">Choose Play Mode: </label>
+            <select id="play-mode-bubble" onchange="changePlayModeBubble()">
+                <option value="friend">Play with a Friend</option>
+                <option value="ai">Play with AI</option>
+            </select>
+        </div>
+        <canvas id="bubbleCanvas" width="800" height="600"></canvas>
+        <div id="shoot-bubble-timer">
+            <span>Player 1 Time: <span id="time-player1">0</span>s</span> |
+            <span>Player 2 Time: <span id="time-player2">0</span>s</span>
+        </div>
+        <button onclick="resetGame('shoot-bubble')">Play Again</button>
+        <button onclick="togglePause('shoot-bubble')">Pause/Resume</button>
+        <button onclick="goBack()">Back to Game Selection</button>
+    </div>
+
+    <div id="memory-match" class="game" aria-label="Memory Match Game">
+        <h2>Memory Match</h2>
+        <div id="play-mode-selection-mm">
+            <label for="play-mode-mm">Choose Play Mode: </label>
+            <select id="play-mode-mm" onchange="changePlayModeMemoryMatch()">
+                <option value="friend">Play with a Friend</option>
+                <option value="ai">Play with AI</option>
+            </select>
+        </div>
+        <div id="difficulty-selection-mm" style="display: none;">
+            <label for="difficulty-mm">Choose AI Difficulty: </label>
+            <select id="difficulty-mm" onchange="changeDifficultyMemoryMatch()">
+                <option value="easy">Easy</option>
+                <option value="normal">Normal</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div id="memory-match-board"></div>
+        <button onclick="resetGame('memory-match')">Play Again</button>
+        <button onclick="togglePause('memory-match')">Pause/Resume</button>
+        <button onclick="goBack()">Back to Game Selection</button>
+    </div>
+
+    <!-- New Snake Game -->
+    <div id="snake" class="game" aria-label="Snake Game">
+        <h2>Snake</h2>
+        <canvas id="snakeCanvas" width="400" height="400"></canvas>
+        <button onclick="resetGame('snake')">Reset Game</button>
+        <button onclick="togglePause('snake')">Pause/Resume</button>
+        <button onclick="goBack()">Back to Game Selection</button>
+    </div>
+
+    <div id="memory-squares" class="game" aria-label="Memory Squares Game">
+        <h2>Memory Squares</h2>
+        <div class="grid">
+            <div class="cell" data-id="0"></div>
+            <div class="cell" data-id="1"></div>
+            <div class="cell" data-id="2"></div>
+            <div class="cell" data-id="3"></div>
+            <div class="cell" data-id="4"></div>
+            <div class="cell" data-id="5"></div>
+            <div class="cell" data-id="6"></div>
+            <div class="cell" data-id="7"></div>
+            <div class="cell" data-id="8"></div>
+        </div>
+        <button onclick="goBack()">Back to Game Selection</button>
+    </div>
+
+    <!-- Sound Effects -->
+    <audio id="move-sound" src="sounds/move-sound.mp3"></audio>
+    <audio id="win-sound" src="sounds/win-sound.mp3"></audio>
+    <audio id="draw-sound" src="sounds/draw-sound.mp3"></audio>
+    <audio id="choice-sound" src="sounds/choice-sound.mp3"></audio>
+    <audio id="result-sound" src="sounds/result-sound.mp3"></audio>
+    <audio id="pop-sound" src="sounds/pop-sound.mp3"></audio>
+
+    <script src="index.js" defer></script>
+</body>
+</html>
